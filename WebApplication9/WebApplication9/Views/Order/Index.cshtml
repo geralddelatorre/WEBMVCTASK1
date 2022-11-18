@@ -1,0 +1,32 @@
+﻿
+<div class="jumbotron">
+    <h3>@ViewBag.Title</h3>
+    <div style="margin-left:86%; margin-bottom:30px;">
+        @Html.ActionLink("Add Order", "Create", null, new { @class = "btn btn-success btn-md" })
+    </div>
+    @Html.DropDownList("CustomerList", null, "Select Name")
+    
+
+
+    @{
+        Html.RenderAction("Orderlist", "Order");
+    }
+</div>
+
+@section scripts {
+    <script>
+         $("#CustomerList").change(function () {
+            var id = this.value;
+            $.ajax({
+                url: '@Url.Action("Orderlist", "Order")',
+                data: { id: id },
+                type: 'POST',
+                success: function (result) {
+                    $("#ordList").html(result);
+                }
+            });
+        });
+
+    </script>
+}
+

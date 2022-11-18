@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication9.Models.Ordertbl>
+
+@*Shared Folder Partial View*@
+
+@{
+    ViewBag.Title = "Orderlist";
+}
+
+
+
+<p>
+   
+</p>
+<div id="ordList">
+    <table class="table table-striped" >
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Orderno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orderdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Totalamount)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Orderno
+                </td>
+                <td>
+                    @item.Orderdate
+                </td>
+                <td>
+                    @item.Customer.Fullname
+                </td>
+                <td>
+                    @item.Totalamount
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
